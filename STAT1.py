@@ -2,7 +2,7 @@ import numpy as np
 from scipy.stats import gamma
 import matplotlib.pyplot as plt
 
-
+Fonction loi gamma
 def gamma(a:int,b,n):
     M=np.random.exponential(1/b,[n,a]) #n lignes a colonnes
     L = []
@@ -11,7 +11,7 @@ def gamma(a:int,b,n):
         L.append(Y)
     return L
      
-
+#Fonction qui calcule les estimateurs a et b
 def estimateurs(L):
     
     n = len(L)
@@ -30,7 +30,7 @@ a, b = estimateurs(donnees)
 print("Estimation du paramètre a :", a)
 print("Estimation du paramètre b :", b)
 
-
+#Fonction qui calcule le risque quadratique
 def risque(a , b , n , m):
     liste_a_chap = []
     liste_b_chap = []
@@ -48,7 +48,7 @@ def risque(a , b , n , m):
         r_b = np.sqrt(np.mean(l_b))
         
         return [r_a , r_b]
-    
+#Exemple    
 R = risque(10 , 5, 10, 100)
 print(R)
 print("\n preciision de a =" , R[0] , "\n")
@@ -56,17 +56,16 @@ print("\n preciision de b =" , R[1] , "\n")
            
 
 #Application
-#on doit mettre le fichier txt dans le meme dossier que le TP
 
 file = open('redundantsystem.txt')
 L= file.readlines()
 K=[float(x) for x in L]
 
-#file.close()
+
 #l’estimation du modèle sous-jacent à leur fonctionnement
 k = estimateurs(K)
 print(k)
-
+file.close()
 # la moyenne des durées de fonctionnement est relativement petite par rapport 
 #à la moyenne des carrés des durées de fonctionnement,cequi entraîne une valeur
 #relativement élevée pour b_chap
